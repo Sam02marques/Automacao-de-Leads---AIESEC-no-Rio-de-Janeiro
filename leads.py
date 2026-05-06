@@ -74,7 +74,7 @@ try:
     # 2. Busca de Leads
     items_url = f'https://api.podio.com/item/app/{APP_ID}/filter/'
     # Aumentamos o limite para 200 para garantir que pegamos leads recentes
-    payload = {"limit": 200}
+    payload = {"limit": 500}
     response = requests.post(items_url, headers=headers, json=payload, verify=False).json()
     
     lista_leads = response.get('items', [])
