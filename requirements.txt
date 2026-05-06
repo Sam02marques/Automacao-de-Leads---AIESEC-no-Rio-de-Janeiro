@@ -1,0 +1,5 @@
+# O que instalar para rodar isso:
+
+requests
+urllib3
+python-dotenv
