@@ -21,8 +21,10 @@ EMAIL_REMETENTE = os.getenv('EMAIL_REMETENTE')
 SENHA_APP_GOOGLE = os.getenv('SENHA_APP_GOOGLE')
 APP_ID = 29772898
 
+# O Python procura por conta própria o log file para não mandar emails repetidos
+DIRETORIO_ATUAL = os.path.dirname(os.path.abspath(__file__))
+LOG_FILE = os.path.join(DIRETORIO_ATUAL, 'leads_enviados.txt')
 
-LOG_FILE = 'leads_enviados.txt'
 if not os.path.exists(LOG_FILE):
     open(LOG_FILE, 'w').close()
 
@@ -53,7 +55,7 @@ Equipe da AIESEC no Rio de Janeiro"""
     msg.set_content(corpo)
     
     try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=15) as smtp:
             smtp.login(EMAIL_REMETENTE, SENHA_APP_GOOGLE)
             smtp.send_message(msg)
         return True
@@ -66,7 +68,7 @@ print(">>> SCRIPT INICIADO <<<")
 try:
     # 1. Autenticação
     auth_data = {'grant_type': 'password', 'client_id': CLIENT_ID, 'client_secret': CLIENT_SECRET, 'username': USERNAME, 'password': PASSWORD}
-    auth_res = requests.post('https://podio.com/oauth/token', data=auth_data, verify=False).json()
+    auth_res = requests.post('https://podio.com/oauth/token', data=auth_data, verify=False, timeout=15).json()
     token = auth_res['access_token']
     headers = {'Authorization': f'Bearer {token}'}
     print("✅ Autenticado!")
@@ -75,7 +77,7 @@ try:
     items_url = f'https://api.podio.com/item/app/{APP_ID}/filter/'
     # Aumentamos o limite para 200 para garantir que pegamos leads recentes
     payload = {"limit": 500}
-    response = requests.post(items_url, headers=headers, json=payload, verify=False).json()
+    response = requests.post(items_url, headers=headers, json=payload, verify=False, timeout=60).json()
     
     lista_leads = response.get('items', [])
     print(f"📊 Leads recebidos do Podio: {len(lista_leads)}")
