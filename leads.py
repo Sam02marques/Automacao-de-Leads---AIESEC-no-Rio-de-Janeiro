@@ -38,9 +38,9 @@ def enviar_email(nome, email_destino):
 
 Vi que você demonstrou interesse em nossos programas de intercâmbio recentemente e apareceu aqui no meu sistema da AIESEC no Rio de Janeiro. 
 
-Como somos a maior organização gerida por jovens do mundo, nosso objetivo é desenvolver sua liderança através de experiências internacionais práticas. Seja no Voluntário Global ou no Talento Global, temos o projeto certo para o seu perfil!
+Como somos a maior organização gerida por jovens do mundo, nosso objetivo é desenvolver sua liderança através de experiências internacionais práticas. Seja no Voluntário Global, Talento Global, ou Professor Global, temos o projeto certo para o seu perfil!
 
-Gostaria de agendar uma conversa rápida para tirarmos suas dúvidas? 
+Gostaria de agendar uma conversa rápida para tirarmos suas dúvidas? Se sim, aguarde que em breve o nosso time irá abordá-lo(a)!
 
 Você pode responder a este e-mail diretamente ou, se preferir, entrar em contato conosco pelo nosso formulário oficial de atendimento:
 👉 https://aiesec.org.br/forms-de-atendimento/
